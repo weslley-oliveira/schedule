@@ -1,4 +1,5 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 interface ContextData {
   isOn: boolean;
@@ -6,13 +7,16 @@ interface ContextData {
 }
 
 interface ContextProviderProps {
-  children: ReactNode
+  children: ReactNode 
 }
 
 export const Context = createContext({} as ContextData)
 
 
-export function ContextProvider({ children }: ContextProviderProps) {  
+export function ContextProvider({ children}: ContextProviderProps) {  
+
+  const cookie = Cookies.get('isOn')
+  
   const [isOn, setState] = useState(false);     
 
   function onOff() {      
@@ -21,6 +25,17 @@ export function ContextProvider({ children }: ContextProviderProps) {
           setState(true)      
         }      
   }
+
+  useEffect(() => {
+    if(cookie == 'true'){      
+      setState(true)
+      alert("You left the light on 🤫")
+    }else{setState(false)}        
+  }, [])
+
+  useEffect(() => {
+    Cookies.set('isOn', String(isOn))
+  }, [isOn])
   
   return (
     <Context.Provider value={{
