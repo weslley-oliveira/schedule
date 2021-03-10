@@ -20,10 +20,16 @@
 This project was developed using the following technologies:
 
 - [![Next Js](https://img.shields.io/badge/Next%20Js-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+
 - [![React Badge](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org)
+
 - [![Context API](https://img.shields.io/badge/Context%20API-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/docs/context.html)
+
 - [![TypeScript Badge](https://img.shields.io/badge/TypeScript-3276E6?style=for-the-badge&logo=typescript&logoColor=white&labelColor=3276E6)](https://www.typescriptlang.org/)
+
 - [![Tailwind Css](https://img.shields.io/badge/TailWind%20Css-ffffff?style=for-the-badge&logo=tailwind-css&logoColor=06b6d4)](https://tailwindcss.com/)
+
+- [![Materialui Badge](https://img.shields.io/badge/Material--UI-0081CB?style=for-the-badge&logo=material-ui&logoColor=white)](https://material-ui.com/)
 
 ## 🔥 Preview
 
