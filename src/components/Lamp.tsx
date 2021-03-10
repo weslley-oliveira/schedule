@@ -9,7 +9,7 @@ function Lamp() {
         <div >
             {isOn?(
                 <Image                
-                src="/onOff.svg"
+                src="/lamp-on.png"
                 alt="Picture of the author"
                 width={280}
                 height={450}
