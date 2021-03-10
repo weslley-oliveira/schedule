@@ -16,7 +16,7 @@ export default function Home() {
     </Head>
     <div className={`h-screen ${isOn ? 'bg-white':'bg-gray-600'}`}>
       <div className="container mx-auto">
-        <div className="flex flex-col items-center py-60">
+        <div className="flex flex-col items-center sm:py-60 py-4">
           <Lamp/>
           <div className={`py-10 font-semibold ${isOn ? 'text-gray-600' : 'text-white'}`}>
             <Switch/>
