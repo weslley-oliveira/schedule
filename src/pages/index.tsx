@@ -1,29 +1,29 @@
 import { useContext } from "react";
-import Lamp from "../components/Lamp";
-import Switch from "../components/SwitchOnOff";
 import { Context } from '../contexts/Context'
 import Head from 'next/head'
+import Booking from "../components/Booking";
 
 
-export default function Home() {
+export default function Home({ data }) {
 
   let { isOn } = useContext(Context);
-
+  console.log(data)
   return (
     <>
     <Head>
-      <title>{isOn?'On':'Off'}</title>
+      <title>Booking | App</title>
     </Head>
-    <div className={`h-screen ${isOn ? 'bg-white':'bg-gray-600'}`}>
-      <div className="container mx-auto">
-        <div className="flex flex-col items-center sm:py-60 py-4">
-          <Lamp/>
-          <div className={`py-10 font-semibold ${isOn ? 'text-gray-600' : 'text-white'}`}>
-            <Switch/>
-          </div>
-        </div>
-      </div>
+    <div className="">
+      <Booking/>
     </div> 
     </>   
   )
+}
+
+export async function getServerSideProps(context) {
+  const res = await fetch(`http://localhost:3000/api/date`)
+  const data = await res.json()
+  return {
+    props: { data }, // will be passed to the page component as props
+  }
 }
