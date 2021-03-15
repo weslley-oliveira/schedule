@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Context } from '../contexts/Context'
 import Head from 'next/head'
 import Booking from "../components/Booking";
@@ -6,8 +6,13 @@ import Booking from "../components/Booking";
 
 export default function Home({ data }) {
 
-  let { isOn } = useContext(Context);
-  console.log(data)
+  let { setData } = useContext(Context);
+
+
+  useEffect(() => {
+   setData(data)
+  }, []);
+
   return (
     <>
     <Head>
