@@ -1,37 +1,45 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Context } from '../contexts/Context';
 import moment from 'moment';
 
+import Calendar from "./calendar/index";
+
+
 
 function Booking() {
-    const { data } = useContext(Context);   
+    const { data } = useContext(Context);
+    const [selectedDate, setSelectedDate] = useState(moment());
+
+    // console.log(selectedDate.format())
+
+    useEffect(() => {
+        let selected = selectedDate.format()
+        let item = data.find(item => item.date == selected)     
+
+        
+        try {
+            console.log("🤑", item.morning)
+            setMorning(item.morning)
+            setAfternoon(item.afternoon)
+          }
+          catch(err) {
+            console.log("😞", err.message)
+          }
+        // if(item){
+        // setMorning(item.morning)
+        // setAfternoon(item.afternoon) 
+        // }else{alert('vai a merda')}
+
+      }, [selectedDate]);   
     
     const [morning , setMorning ] = useState([])
     const [afternoon , setAfternoon ] = useState([])
 
-    function handleClick(e){
-        let selected = e.currentTarget.id
-        let item = data.find(item => item.id == selected)
-
-        console.log("teste", item)
-
-        setMorning(item.morning)
-        setAfternoon(item.afternoon)
-        
-    }
-    console.log()
     return (
-        <div>
-            <div>{moment().format("MMMM YYYY")}</div>
+        <div>            
             <div>                
                 <ul  className="flex gap-2">
-                    {data.map((day) => (
-                        <li key={day.id} className="flex flex-col">                       
-                            <span >{moment(day.date).format("ddd")}</span>
-                            <span id={day.id} onClick={handleClick}>{moment(day.date).format("D")}</span>
-                        </li>  
-                    ))}              
-                   
+                    <Calendar value={selectedDate} onChange={setSelectedDate} />
                 </ul>
             </div>
             
@@ -57,7 +65,7 @@ function Booking() {
                         ))}                        
                     </ul>
                 </div>
-                        : <p>Sem Horario</p> }
+                        : null }
             </div>
             
         
