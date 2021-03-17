@@ -30,15 +30,18 @@ export default function CalendarHeader({ value, onChange }) {
   }
 
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between font-bold py-4">
       <div
         className="cursor-pointer"
         onClick={() => !thisMonth() && onChange(prevWeek())}
       >
         {!thisMonth() ? String.fromCharCode(171) : null}
       </div>
-      <div className="current">
-        {currMonthName()} {currYear()}{next == 1 && ', next week'} {next>=2 &&`, in ${next} weeks`}
+      <div className="text-center ">
+        <h1>{currMonthName()}{' '}  
+            {currYear()}
+            {next == 1 && ', next week'}
+            {next>=2 &&`, in ${next} weeks`}</h1>
       </div>
       <div className="cursor-pointer" onClick={() => onChange(nextWeek())}>
         {String.fromCharCode(187)}

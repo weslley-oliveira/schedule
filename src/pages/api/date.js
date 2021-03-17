@@ -56,11 +56,8 @@ export default function handler(req, res) {
           
          ],
         afternoon: [
-          '12:30 - 13:00',
-          '13:30 - 14:00',
           
-          '16:30 - 17:00',
-          '17:30 - 18:00',
+          
          ]
       }, 
       { 

@@ -4,6 +4,7 @@ import Header from "./header";
 
 export default function Calendar({ value, onChange, data }) {
   const [calendar, setCalendar] = useState([]);
+  const [saber, setSaber] = useState('pica');
 
   useEffect(() => {
     setCalendar(buildCalendar(value));
@@ -28,8 +29,8 @@ export default function Calendar({ value, onChange, data }) {
     return a;
   }
 
-  function isSelected(day) {
-    return value.isSame(day, "day");
+  function isSelected(day) {       
+    return value.isSame(day, "day");    
   }
 
   function beforeToday(day) {
@@ -40,30 +41,50 @@ export default function Calendar({ value, onChange, data }) {
     return moment(new Date()).isSame(day, "day");
   }
 
-  function dayStyles(day) {
+  function hasHours(day){ 
+    let selected = day.format() 
+    let item = data.find(item => item.date == selected)
+    if (beforeToday(day)){}else{
+    try{
+      if(item.morning.length && item.afternoon.length >= 1){      
+        return "bg-green-100 text-green-500"
+      }
+     }
+    catch(err) { }
+    }
+    
+  }
+  
+  
+
+  function dayStyles(day) {   
+     
     if (beforeToday(day)) return "text-gray-300";
-    if (isSelected(day)) return "rounded border border-blue-800 text-blue-600";
-    if (isToday(day)) return "text-red-500";
+    if (isSelected(day)) return "bg-green-500 text-white";
+    if (isToday(day)) return "bg-green-100 text-green-500";
     return "";
   }
 
+  //console.log( "esssss", data )
+
   return (
-    <div className="p-2">
+    <div className="">
       <Header value={value} onChange={onChange} />
 
-      <div className="w-96">        
+      <div className="text-gray-300">        
         {calendar.map((week, wi) => (
-          <div key={wi} className="flex justify-between ">
+          <div key={wi} className="flex gap-1 sm:gap-2">
             {week.map((day, di) => (
               <div
                 key={di}
-                className="day"
+                className={`cursor-pointer rounded-lg text-center ${hasHours(day)}`}             
                 onClick={() => {
                   if (day < moment(new Date()).startOf("day")) return;
-                  onChange(day);
+                  onChange(day);                  
                 }}
               >
-                <div className={`cursor-pointer p-2 flex flex-col ${dayStyles(day)}`}>
+                <div className={`flex flex-col w-12 sm:w-16 font-semibold p-2 rounded-lg ${dayStyles(day)}`}>
+
                   <h1>{day.format("ddd").toString()}</h1>
                   <p>{day.format("D").toString()}</p>
                 </div>

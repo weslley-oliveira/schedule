@@ -18,12 +18,12 @@ function Booking() {
 
         
         try {
-            console.log("🤑", item.morning)
+            // console.log("🤑", item.morning)
             setMorning(item.morning)
             setAfternoon(item.afternoon)
           }
           catch(err) {
-            console.log("😞", err.message)
+            // console.log("😞", err.message)
           }
         // if(item){
         // setMorning(item.morning)
@@ -36,32 +36,35 @@ function Booking() {
     const [afternoon , setAfternoon ] = useState([])
 
     return (
-        <div>            
+        <div className="p-2 text-gray-600">            
             <div>                
-                <ul  className="flex gap-2">
-                    <Calendar value={selectedDate} onChange={setSelectedDate} />
-                </ul>
+                <Calendar value={selectedDate} data={data} onChange={setSelectedDate} />
             </div>
             
-            <div className="grid grid-cols-2">
+            <div className="py-4 grid grid-cols-2 text-center">
                 {morning.length?
                 <div>
-                    <span>Morning</span>
-                    <ul>                        
+                    <span className="font-semibold p-4">Morning</span>
+                    <ul className="flex flex-col gap-2 py-4">                        
                         {morning.map((m) => (
-                            <li key={m}>{m}</li>
+                            <li className=" mx-2 p-2 cursor-pointer border border-gray-500 rounded-lg hover:bg-gray-200" 
+                            key={m}>{m}</li>
                             ))}                     
                     </ul>
                     
                 </div>
-                     :   <p>Sem Horario</p>        }
+                     :   <p>
+                         Sorry, there are no slots available on this day. Please try a different day or reducing the hours.
+                     </p>        }
 
                 {afternoon.length?
                 <div>
-                    <span>Afternoon</span>
-                    <ul>                        
+                    <span className="font-semibold p-4">Afternoon</span>
+                    <ul className="flex flex-col gap-2 py-4">                        
                         {afternoon.map((t) => (
-                            <li key={t}>{t}</li>
+                            <li
+                            className="mx-2 p-2 cursor-pointer border border-gray-500 rounded-lg hover:bg-gray-200"
+                             key={t}>{t}</li>
                         ))}                        
                     </ul>
                 </div>
