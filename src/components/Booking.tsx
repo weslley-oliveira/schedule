@@ -1,35 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Context } from '../contexts/Context';
 import moment from 'moment';
-
 import Calendar from "./calendar/index";
-
-
 
 function Booking() {
     const { data } = useContext(Context);
     const [selectedDate, setSelectedDate] = useState(moment());
 
-    // console.log(selectedDate.format())
-
     useEffect(() => {
         let selected = selectedDate.format()
         let item = data.find(item => item.date == selected)     
 
-        
-        try {
-            // console.log("🤑", item.morning)
+        try {            
             setMorning(item.morning)
             setAfternoon(item.afternoon)
           }
-          catch(err) {
-            // console.log("😞", err.message)
-          }
-        // if(item){
-        // setMorning(item.morning)
-        // setAfternoon(item.afternoon) 
-        // }else{alert('vai a merda')}
-
+          catch(err) {          
+          }        
       }, [selectedDate]);   
     
     const [morning , setMorning ] = useState([])
@@ -69,11 +56,7 @@ function Booking() {
                     </ul>
                 </div>
                         : null }
-            </div>
-            
-        
-         
-            
+            </div>   
         </div>
     )
 }

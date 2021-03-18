@@ -3,8 +3,7 @@ import moment from "moment";
 import Header from "./header";
 
 export default function Calendar({ value, onChange, data }) {
-  const [calendar, setCalendar] = useState([]);
-  const [saber, setSaber] = useState('pica');
+  const [calendar, setCalendar] = useState([]);  
 
   useEffect(() => {
     setCalendar(buildCalendar(value));
@@ -12,8 +11,6 @@ export default function Calendar({ value, onChange, data }) {
 
   function buildCalendar(date) {
     const a = [];
-
-
     const startDay = date.clone().startOf("week");
     const endDay = date.clone().endOf("week");
 
@@ -51,12 +48,9 @@ export default function Calendar({ value, onChange, data }) {
       }
      }
     catch(err) { }
-    }
-    
+    }    
   }
   
-  
-
   function dayStyles(day) {   
      
     if (beforeToday(day)) return "text-gray-300";
@@ -65,10 +59,8 @@ export default function Calendar({ value, onChange, data }) {
     return "";
   }
 
-  //console.log( "esssss", data )
-
   return (
-    <div className="">
+    <div className="flex flex-col items-center p-2">
       <Header value={value} onChange={onChange} />
 
       <div className="text-gray-300">        
@@ -80,11 +72,12 @@ export default function Calendar({ value, onChange, data }) {
                 className={`cursor-pointer rounded-lg text-center ${hasHours(day)}`}             
                 onClick={() => {
                   if (day < moment(new Date()).startOf("day")) return;
-                  onChange(day);                  
+                  if (day.format("ddd").toString() == "Sun") return
+                  onChange(day);                
+                                             
                 }}
               >
                 <div className={`flex flex-col w-12 sm:w-16 font-semibold p-2 rounded-lg ${dayStyles(day)}`}>
-
                   <h1>{day.format("ddd").toString()}</h1>
                   <p>{day.format("D").toString()}</p>
                 </div>

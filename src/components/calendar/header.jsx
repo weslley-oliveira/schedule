@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 export default function CalendarHeader({ value, onChange }) {
   const [ next, setNext ] = useState('')
+  
   function currMonthName() {
     return value.format("MMMM")     
   } 
@@ -25,17 +26,17 @@ export default function CalendarHeader({ value, onChange }) {
     return value.clone().add(1, "week");
   }
 
-  function thisMonth() {
+  function thisWeek() {
     return value.isSame(new Date(), "week");
   }
 
   return (
-    <div className="flex justify-between font-bold py-4">
+    <div className=" flex justify-between w-full font-bold py-4">
       <div
         className="cursor-pointer"
-        onClick={() => !thisMonth() && onChange(prevWeek())}
+        onClick={() => !thisWeek() && onChange(prevWeek())}
       >
-        {!thisMonth() ? String.fromCharCode(171) : null}
+        {!thisWeek() ? String.fromCharCode(171) : null}
       </div>
       <div className="text-center ">
         <h1>{currMonthName()}{' '}  
