@@ -7,8 +7,11 @@ function Booking() {
     const { data } = useContext(Context);
     const [selectedDate, setSelectedDate] = useState(moment());
 
+    const [morning , setMorning ] = useState([])
+    const [afternoon , setAfternoon ] = useState([])
+
     useEffect(() => {
-        let selected = selectedDate.format()
+        let selected = selectedDate.format('L')
         let item = data.find(item => item.date == selected)     
 
         try {            
@@ -19,13 +22,12 @@ function Booking() {
           }        
       }, [selectedDate]);   
     
-    const [morning , setMorning ] = useState([])
-    const [afternoon , setAfternoon ] = useState([])
+    
 
     return (
         <div className="p-2 text-gray-600">            
             <div>                
-                <Calendar value={selectedDate} data={data} onChange={setSelectedDate} />
+                <Calendar value={selectedDate} onChange={setSelectedDate} />
             </div>
             
             <div className="py-4 grid grid-cols-2 text-center">

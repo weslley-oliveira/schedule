@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { Context } from '../contexts/Context'
 import Head from 'next/head'
 import Booking from "../components/Booking";
+import  Link  from "next/link";
 
 
 export default function Home({ data }) {
@@ -18,7 +19,10 @@ export default function Home({ data }) {
     <Head>
       <title>Booking | App</title>
     </Head>
-    <div className="">
+    <div className="py-4">
+      <Link href="/admin">
+        <a className="p-2 text-gray-700 font-bold m-4 border border-blue-600 rounded-xl cursor-pointer">Admin</a>
+      </Link>
       <Booking/>
     </div> 
     </>   

@@ -1,7 +1,7 @@
 export default function handler(req, res) {
     res.status(200).json([
       { id: 0,
-        date: "2021-03-15T00:00:00+00:00",        
+        date: "03/19/2021",        
        morning: [
          '07:30 - 08:00',
          '08:30 - 09:00',
@@ -17,7 +17,7 @@ export default function handler(req, res) {
         ]
       },
       { id: 1,
-        date: "2021-03-16T00:00:00+00:00",        
+        date: "03/20/2021",        
         morning: [
           
           '09:30 - 10:00',
@@ -33,7 +33,7 @@ export default function handler(req, res) {
          ]
       }, 
       { id: 2,
-        date: "2021-03-17T00:00:00+00:00",        
+        date: "03/21/2021",        
         morning: [
           '07:30 - 08:00',
           '08:30 - 09:00',
@@ -51,7 +51,7 @@ export default function handler(req, res) {
       }, 
       { 
         id: 3,
-        date: "2021-03-18T00:00:00+00:00",        
+        date: "03/22/2021",        
         morning: [
           
          ],
@@ -62,7 +62,7 @@ export default function handler(req, res) {
       }, 
       { 
         id: 4,
-        date: "2021-03-19T00:00:00+00:00",        
+        date: "03/23/2021",        
         morning: [
           '07:30 - 08:00',
           '08:30 - 09:00',
@@ -78,7 +78,7 @@ export default function handler(req, res) {
       },
       { 
         id: 5,
-        date: "2021-03-20T00:00:00+00:00",        
+        date: "03/24/2021",        
         morning: [
           '07:30 - 08:00',
           '08:30 - 09:00',
@@ -94,17 +94,20 @@ export default function handler(req, res) {
       },
       { 
         id: 6,
-        date: "2021-03-21T00:00:00+00:00",        
+        date: "03/25/2021",        
         morning: [
+          '07:30 - 08:00',
+          '08:30 - 09:00',
+          '09:30 - 10:00',
           
          ],
         afternoon: [
-         
+          
          ]
       },
       { 
         id: 7,
-        date: "2021-03-22T00:00:00+00:00",        
+        date: "03/26/2021",        
         morning: [
           
          ],
@@ -114,13 +117,25 @@ export default function handler(req, res) {
       },
       { 
         id: 8,
-        date: "2021-03-25T00:00:00+00:00",        
+        date: "03/27/2021",        
         morning: [
           '07:30 - 08:00',
           '08:30 - 09:00',
           '09:30 - 10:00',
           
           '11:30 - 12:00',
+         ],
+        afternoon: [
+          
+          '16:30 - 17:00',
+          '17:30 - 18:00',
+         ]
+      },
+      { 
+        id: 9,
+        date: "03/28/2021",        
+        morning: [
+          
          ],
         afternoon: [
           

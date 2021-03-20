@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import moment from "moment";
 import Header from "./header";
+import { Context } from "../../contexts/Context";
 
-export default function Calendar({ value, onChange, data }) {
+
+export default function Calendar({ value, onChange}) {
+  const { data } = useContext(Context);
+  
   const [calendar, setCalendar] = useState([]);  
 
   useEffect(() => {
@@ -39,11 +43,11 @@ export default function Calendar({ value, onChange, data }) {
   }
 
   function hasHours(day){ 
-    let selected = day.format() 
+    let selected = day.format('L') 
     let item = data.find(item => item.date == selected)
     if (beforeToday(day)){}else{
     try{
-      if(item.morning.length && item.afternoon.length >= 1){      
+      if(item.morning.length || item.afternoon.length >= 1){      
         return "bg-green-100 text-green-500"
       }
      }
