@@ -18,7 +18,9 @@ function Booking() {
             setMorning(item.morning)
             setAfternoon(item.afternoon)
           }
-          catch(err) {          
+          catch(err) {
+            setMorning([])
+            setAfternoon([])              
           }        
       }, [selectedDate]);   
     
@@ -29,9 +31,9 @@ function Booking() {
             <div>                
                 <Calendar value={selectedDate} onChange={setSelectedDate} />
             </div>
-            
+            {morning.length || afternoon.length ?
             <div className="py-4 grid grid-cols-2 text-center">
-                {morning.length?
+                
                 <div>
                     <span className="font-semibold p-4">Morning</span>
                     <ul className="flex flex-col gap-2 py-4">                        
@@ -42,9 +44,7 @@ function Booking() {
                     </ul>
                     
                 </div>
-                     :   <p>
-                         Sorry, there are no slots available on this day. Please try a different day or reducing the hours.
-                     </p>        }
+                     
 
                 {afternoon.length?
                 <div>
@@ -58,7 +58,11 @@ function Booking() {
                     </ul>
                 </div>
                         : null }
-            </div>   
+            </div>  
+            :   
+            <p>
+                Sorry, there are no slots available on this day. Please try a different day or reducing the hours.
+            </p>} 
         </div>
     )
 }

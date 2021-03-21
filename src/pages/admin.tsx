@@ -2,8 +2,9 @@ import Link from "next/link"
 import { useContext, useEffect } from "react";
 import AddDates from "../components/addDates"
 import { Context } from "../contexts/Context";
+import { connectToDatabase }  from "../util/mongodb"
 
-function admin({data}) {
+function admin({ data }) {
 
     
   let { setData } = useContext(Context);
@@ -27,11 +28,15 @@ export default admin
 
 
 
-export async function getServerSideProps(context) {
-    const res = await fetch(`http://localhost:3000/api/date`)
-    const data = await res.json()
-    return {
-      props: { data }, // will be passed to the page component as props
-    }
+export async function getServerSideProps() {
+  //const res = await fetch(`http://localhost:3000/api/date`)
+  const { db } = await connectToDatabase();
+
+  const response = await db.collection("hours").find().sort({ metacritic: -1 }).toArray();
+ // const data = await res.json()
+  return {
+    props: {
+      data: JSON.parse(JSON.stringify(response)),
+     } // will be passed to the page component as props
   }
-  
+}

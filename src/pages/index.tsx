@@ -3,15 +3,15 @@ import { Context } from '../contexts/Context'
 import Head from 'next/head'
 import Booking from "../components/Booking";
 import  Link  from "next/link";
+import { connectToDatabase }  from "../util/mongodb"
 
 
 export default function Home({ data }) {
 
   let { setData } = useContext(Context);
 
-
   useEffect(() => {
-   setData(data)
+    setData(data)
   }, []);
 
   return (
@@ -30,9 +30,14 @@ export default function Home({ data }) {
 }
 
 export async function getServerSideProps(context) {
-  const res = await fetch(`http://localhost:3000/api/date`)
-  const data = await res.json()
+  //const res = await fetch(`http://localhost:3000/api/date`)
+  const { db } = await connectToDatabase();
+
+  const response = await db.collection("hours").find().sort({ metacritic: -1 }).toArray();
+ // const data = await res.json()
   return {
-    props: { data }, // will be passed to the page component as props
+    props: {
+      data: JSON.parse(JSON.stringify(response)),
+     } // will be passed to the page component as props
   }
 }
