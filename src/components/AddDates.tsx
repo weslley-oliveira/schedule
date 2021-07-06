@@ -27,13 +27,17 @@ function AddDates() {
         try {            
             setMorning(item.morning)
             setAfternoon(item.afternoon)
+            
             setShow(true)            
           }
           catch(err) {
-            setShow(false)  
+             
             setMorning([])
-            setAfternoon([])        
+            setAfternoon([])
+            setShow(false)         
           }
+          
+          
           
     }, [selectedDate])
 
